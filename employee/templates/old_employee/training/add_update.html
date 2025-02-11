@@ -1,0 +1,23 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<h1>社員情報管理システム</h1>
+<h2>{% if is_update %}トレーニング更新{% else %}トレーニング新規登録{% endif %}</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="table">
+        <tr>
+            <th>トレーニング</th>
+            <td>{{ form.training }}</td>
+        </tr>
+        <tr>
+            <th>取得日</th>
+            <td>{{ form.get_date }}</td>
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">{% if is_update %}更新{% else %}登録{% endif %}</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<table class="table">
+    <tr>
+        <th><h1>社員情報管理システム</h1></th>
+        <td><a href="{% url 'employee:add' %}">登録</a></td>
+    </tr>
+</table>
+<h2>一覧画面</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>社員番号</th>
+            <th>社員名</th>
+            <th>更新</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in page_obj %}
+        <tr>
+            <td>{{ employee.employee_id }}</td>
+            <td>{{ employee.employee_name }}</td>
+            <td><a href="{% url 'employee:detail' employee.pk %}">詳細</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- ページネーション処理 -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; 最初</a>
+            <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+        {% endif %}
+
+        <span class="current">
+            ページ {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

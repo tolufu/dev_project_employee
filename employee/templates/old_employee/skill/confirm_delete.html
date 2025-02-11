@@ -1,0 +1,28 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<h1>社員情報管理システム</h1>
+<h2><一覧画面></h2>
+<form action="" method="POST">
+    <table class="table">
+        <tr>
+            <th>社員番号</th>
+            <td>{{ employee.employee_id }}</td>
+       </tr>
+        <tr>
+            <th>社員名</th>
+            <td>{{ employee.employee_name }}</td>
+        <tr>
+            <th>スキル名</th>
+            <td>{{ skill.skill_name }}</td>
+        </tr>
+        <tr>
+            <th>取得日</th>
+            <td>{{ get_date }}</td>
+        </tr>
+    </table>
+<p>こちらのデータを削除します</p>
+<button type="submit" class="btn btn-primary">送信</button>
+{% csrf_token %}
+</form>
+{% endblock %}

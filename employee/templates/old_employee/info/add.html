@@ -1,0 +1,27 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<h1>社員情報管理システム</h1>
+<form action="" method="POST">
+    <table class="table">
+        <tr>
+            <th>社員番号</th>
+            <td>{{ form.employee_id }}</td>
+       </tr>
+        <tr>
+            <th>誕生日</th>
+        <td>{{ form.birth_date }}<td>
+        </tr>
+        <tr>
+            <th>姓</th>
+        <td>{{ form.last_name }}</td>
+        </tr>
+        <tr>
+            <th>名</th>
+        <td>{{ form.first_name }}</td>
+        </tr>
+    </table>
+<button type="submit" class="btn btn-primary">送信</button>
+{% csrf_token %}
+</form>
+{% endblock %}

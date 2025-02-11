@@ -1,0 +1,35 @@
+
+{% extends 'employee/base.html' %}
+{% block content %}
+<h2 class="mb-3">社員一覧</h2>
+<a href="{% url 'employee:add' %}" class="btn btn-success mb-2">新規登録</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>社員番号</th>
+            <th>社員名</th>
+            <th>詳細</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in page_obj %}
+        <tr>
+            <td>{{ employee.employee_id }}</td>
+            <td>{{ employee.employee_name }}</td>
+            <td><a href="{% url 'employee:detail' employee.pk %}" class="btn btn-info btn-sm">詳細</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-outline-primary btn-sm">&laquo; 最初</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary btn-sm">前へ</a>
+    {% endif %}
+    <span class="mx-2">ページ {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary btn-sm">次へ</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-primary btn-sm">最後 &raquo;</a>
+    {% endif %}
+</div>
+{% endblock %}

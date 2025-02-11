@@ -1,0 +1,19 @@
+
+{% extends 'employee/base.html' %}
+{% block content %}
+<h1 class="mb-3">削除確認</h1>
+<div class="alert alert-danger">
+    <p>以下のデータを削除しますか？</p>
+</div>
+<div class="card p-3">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <tr><th>社員番号</th><td>{{ employee.employee_id }}</td></tr>
+            <tr><th>社員名</th><td>{{ employee.employee_name }}</td></tr>
+        </table>
+        <button type="submit" class="btn btn-danger">削除</button>
+        <a href="{% url 'employee:detail' employee.pk %}" class="btn btn-secondary">キャンセル</a>
+    </form>
+</div>
+{% endblock %}

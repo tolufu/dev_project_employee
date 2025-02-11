@@ -1,0 +1,18 @@
+
+{% extends 'employee/base.html' %}
+{% block content %}
+<h1 class="mb-3">社員情報更新</h1>
+<div class="card p-3">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <tr><th>社員番号</th><td>{{ form.employee_id.value }}</td></tr>
+            {{ form.employee_id.as_hidden }}
+            <tr><th>誕生日</th><td>{{ form.birth_date }}</td></tr>
+            <tr><th>姓</th><td>{{ form.last_name }}</td></tr>
+            <tr><th>名</th><td>{{ form.first_name }}</td></tr>
+        </table>
+        <button type="submit" class="btn btn-warning">更新</button>
+    </form>
+</div>
+{% endblock %}

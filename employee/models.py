@@ -51,12 +51,10 @@ class SkillMaster(models.Model):
     def __str__(self):
         return self.skill_name
 
-
-from datetime import date
 class EmployeeTraining(models.Model):
     employee = models.ForeignKey(Employee, verbose_name="社員番号", on_delete=models.CASCADE)
     training = models.ForeignKey(TrainingMaster, verbose_name="トレーニングID", on_delete=models.CASCADE)
-    get_date = models.DateField("取得日",default=date.today())
+    get_date = models.DateField("取得日")
 
     class Meta:
         unique_together = ('employee', 'training')
@@ -70,7 +68,7 @@ class EmployeeTraining(models.Model):
 class EmployeeSkill(models.Model):
     employee = models.ForeignKey(Employee, verbose_name="社員番号", on_delete=models.CASCADE)
     skill = models.ForeignKey(SkillMaster, verbose_name="スキルID", on_delete=models.CASCADE)
-    get_date = models.DateField("取得日",default=date.today())
+    get_date = models.DateField("取得日")
 
     class Meta:
         unique_together = ('employee', 'skill')
